@@ -1,40 +1,17 @@
 class Solution {
 public:
-    int mini( vector<int>& nums , int start , int end )
-    {
-        int temp = INT_MAX ;
-        for ( int i = start ; i <= end ; i++ )
-        {
-            if ( temp > nums[i] ) temp = nums[i] ;
+    int firstStableIndex(vector<int>& nums, int k) {
+        int n=nums.size();
+        vector<int> mini(n);
+        mini[n-1]=nums[n-1];
+        for(int i=n-2;i>=0;i--){
+            mini[i]=(nums[i]<mini[i+1])?nums[i]:mini[i+1];
         }
-        return temp;
-    }
-    int maxi( vector<int>& nums , int start , int end )
-    {
-        int temp = INT_MIN ;
-        for ( int i = start ; i <= end ; i++ )
-        {
-            if ( temp < nums[i] ) temp = nums[i] ;
+        int maxi=nums[0];
+        for(int i=0;i<n;i++){
+            if(maxi<nums[i])maxi=nums[i];
+            if(maxi-mini[i]<=k)return i;
         }
-        return temp;
-    }
-    int firstStableIndex(vector<int>& nums, int k) 
-    {
-        if ( nums.size() == 1 ) 
-        {
-            return 0 ;
-        }
-        int ans = INT_MAX ;
-        int ansIdx = -1 ;
-        int n = nums.size() ;
-        for ( int i = 0 ; i < n ; i++ )
-        {
-            int score = maxi( nums , 0 , i ) - mini( nums , i , n - 1  ) ;
-            if ( score <= k )
-            {
-                return ansIdx = i ;
-            }
-        }
-        return ansIdx ;
+        return -1;
     }
 };
