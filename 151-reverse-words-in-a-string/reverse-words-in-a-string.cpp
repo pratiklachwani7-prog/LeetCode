@@ -10,19 +10,14 @@ public:
         {
             if ( s[i] == ' ' ) continue ;
 
-            string temp ;
-            while ( i >= 0 && s[i] != ' ' ) 
-            {
-                temp += s[i] ;
-                i--;
-            }
+            int j = i ;
+            while ( j >= 0 && s[j] != ' ' ) j-- ;
 
-            reverse( temp.begin() , temp.end() ) ;
-            ans = ans + temp + " " ;
+            if ( !ans.empty() ) ans.push_back(' ') ;
+            for ( int k = j + 1 ; k <= i ; k++ ) ans.push_back( s[k] ) ;
+
+            i = j ;
         }
-        ans.pop_back() ;
         return ans ;
-
-
     }
 };
