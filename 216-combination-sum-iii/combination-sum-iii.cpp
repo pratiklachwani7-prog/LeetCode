@@ -1,20 +1,23 @@
 class Solution {
 public:
-    void solve( int k , int n , vector<vector<int>>& ans , vector<int> temp , int idx )
+    void solve( int k , int n , vector<vector<int>>& ans , vector<int> temp , int idx , int sum )
     {
-        if ( temp.size() == k )
+        if ( temp.size() == k && sum == n )
         {
-            int sumTemp = 0 ; 
-            for ( int i = 0 ; i < temp.size() ; i++ ) sumTemp+=temp[i] ;
-            if ( sumTemp == n ) ans.push_back( temp ) ;
+            ans.push_back( temp ) ;
             return ;
         }
 
         for ( int i = idx ; i <= 9 ; i++ )
         {
-            temp.push_back( i ) ;
-            solve( k , n , ans , temp , i+1 ) ;
-            temp.pop_back() ;
+            if ( i <= n - sum )
+            {
+                temp.push_back( i ) ;
+                sum += i ;
+                solve( k , n , ans , temp , i + 1 , sum ) ;
+                sum -= i ;
+                temp.pop_back() ;
+            }
         }
         return ;
     }
@@ -30,7 +33,7 @@ public:
         }
         vector<vector<int>> ans ;
         vector<int> temp ;
-        solve( k , n , ans , temp , 1) ;
+        solve( k , n , ans , temp , 1 , 0 ) ;
         return ans ;
     }
 };
