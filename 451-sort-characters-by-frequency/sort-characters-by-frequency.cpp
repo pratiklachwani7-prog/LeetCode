@@ -17,10 +17,8 @@ public:
 
         for ( auto& v : freq )
         {
-            for( int i = 0 ; i < v.second; i++ )
-            {
-                ans += v.first ;
-            }
+            string tet = string(v.second , v.first) ;
+            ans += tet ;
         }
         return ans ;
     }
