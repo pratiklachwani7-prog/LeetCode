@@ -3,16 +3,24 @@ public:
     int passwordStrength(string password) 
     {
         int n = password.size() ;
-        int ans = 0 ;
-        unordered_map<int,int> freq ;
-        for ( auto& x : password ) freq[x]++;
-
-        for ( auto& p : freq )
+        vector<int> freq( 128 , 0  ) ;
+        for ( int i = 0 ; i < n ; i++ )
         {
-            if ( isdigit( p.first ) ) ans += 3 ;
-            else if ( isalpha( p.first ) && islower( p.first ) )  ans += 1 ;
-            else if ( isalpha( p.first ) && isupper( p.first ) )  ans += 2 ;
-            else ans += 5 ; 
+            int ascii = password[i] ;
+            freq[ ascii ]++ ;
+        }
+
+        int ans = 0 ;
+        for ( int i = 0 ; i < 128 ; i++ )
+        {
+            if ( freq[i] != 0 )
+            {
+                char temp = i ;
+                if ( isdigit( temp ) ) ans += 3 ;
+                else if ( isalpha( temp ) && islower( temp ) )  ans += 1 ;
+                else if ( isalpha( temp ) && isupper( temp ) )  ans += 2 ;
+                else ans += 5 ; 
+            }
         }
         return ans ;
     }
