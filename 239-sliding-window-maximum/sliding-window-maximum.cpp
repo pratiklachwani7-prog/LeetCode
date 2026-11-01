@@ -4,7 +4,7 @@ public:
     {
         vector<int> ans ;
         int i = 0 , j = 0 ;
-        list<int> lt ; 
+        deque<int> lt ; 
         while ( j < nums.size() )    
         {
             while ( lt.size() > 0 && lt.back() < nums[j] ) lt.pop_back() ;
