@@ -11,10 +11,10 @@ public:
         {
             int mid = low + ( high - low ) / 2 ;
 
-            long long check = 0 ; 
+            long long check = 0 ;
             for ( int i = 0 ; i < n ; i++ ) 
             {
-                check += ceil( (double)piles[i] / (double)mid  ) ;
+                check += ( (piles[i] + mid - 1) / (double)mid  ) ;
                 if ( check > h ) break ;
             }
 
