@@ -10,8 +10,12 @@ public:
         {
             int mid = low + ( high - low ) / 2 ;
 
-            int sum = 0 ; 
-            for ( int i = 0 ; i < n ; i++ ) sum += ceil ( (double)nums[i] / (double) mid ) ;
+            long long sum = 0 ; 
+            for ( int i = 0 ; i < n ; i++ ) 
+            {
+                sum += ceil ( (double)nums[i] / (double) mid ) ;
+                if ( sum > threshold ) break ;  
+            }
 
             if ( sum <= threshold ) 
             {
