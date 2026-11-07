@@ -14,7 +14,7 @@ public:
             long long check = 0 ;
             for ( int i = 0 ; i < n ; i++ ) 
             {
-                check += ( (piles[i] + mid - 1) / (double)mid  ) ;
+                check += ( (piles[i] + mid - 1) / mid  ) ;
                 if ( check > h ) break ;
             }
 
