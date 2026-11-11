@@ -10,7 +10,7 @@ public:
             sum += x ;
         }
 
-        int low = maxi , high = sum , ans = -1 ;
+        int low = maxi , high = sum  ;
         while ( low <= high )
         {
             int mid = low + ( high - low ) / 2 ; 
@@ -33,11 +33,10 @@ public:
             if ( requiredDays > days ) low = mid + 1 ;
             else 
             {
-                ans = mid ;
                 high = mid - 1 ; 
             }
         }
-        return ans ;
+        return low;
 
 
     }
